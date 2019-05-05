@@ -1,0 +1,8 @@
+Request starting HTTP/1.1 GET https://localhost:5001/  
+Processing request /
+Processing request /
+Request finished in 119.5149ms 200 
+Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+Processing request /favicon.ico
+Processing request /favicon.ico
+Request finished in 29.9831ms 200 
