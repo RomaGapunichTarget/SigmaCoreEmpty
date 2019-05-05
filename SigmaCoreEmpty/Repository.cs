@@ -18,6 +18,17 @@ namespace SigmaCoreEmpty
 
         }
 
+        public void AddAnimals(string name,decimal weight, decimal height)
+        {
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("insert into Animals   (Height,Name,Weight) values (@Height,@Names,@Weigth)", conn);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add(new SqlParameter{Value = name,ParameterName = "@Names"});
+            cmd.Parameters.Add(new SqlParameter { Value = weight, ParameterName = "@Weigth" });
+            cmd.Parameters.Add(new SqlParameter { Value = height, ParameterName = "@Height" });
+            cmd.ExecuteNonQuery();
+        }
+
         public void Connect()
         {
             SqlDataReader rdr = null;
@@ -45,12 +56,15 @@ namespace SigmaCoreEmpty
             }
             catch (Exception e)
             {
-                SqlCommand cmd = new SqlCommand(@"CREATE TABLE [dbo].Animals
-                    ([Id] INT NOT NULL PRIMARY KEY IDENTITY,
-                    [Name] NVARCHAR(MAX) NULL,
-                    [Height] DECIMAL(18, 3) NULL,
-                    [Weight] DECIMAL(18, 3) NULL)", conn);
+                SqlCommand cmd = new SqlCommand(@"CREATE TABLE [dbo].[Animals] (
+    [Id]     INT             IDENTITY (1, 1) NOT NULL,
+    [Name]   NVARCHAR (MAX)  NULL,
+    [Weight] DECIMAL (18, 4) NULL,
+    [Height] DECIMAL (18, 4) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);", conn);
                 cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
             }
             finally
             {

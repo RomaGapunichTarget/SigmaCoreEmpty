@@ -6,3 +6,23 @@ Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico
 Processing request /favicon.ico
 Processing request /favicon.ico
 Request finished in 29.9831ms 200 
+Request starting HTTP/1.1 GET https://localhost:5001/  
+Processing request /
+Processing request /
+An unhandled exception has occurred while executing the request.
+Request finished in 1729.7917ms 500 text/html; charset=utf-8
+Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+Processing request /favicon.ico
+Processing request /favicon.ico
+An unhandled exception has occurred while executing the request.
+Request finished in 277.2007ms 500 text/html; charset=utf-8
+Request starting HTTP/1.1 GET https://localhost:5001/  
+Processing request /
+Processing request /
+An unhandled exception has occurred while executing the request.
+Request finished in 959.2078ms 500 text/html; charset=utf-8
+Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+Processing request /favicon.ico
+Processing request /favicon.ico
+An unhandled exception has occurred while executing the request.
+Request finished in 91.9701ms 500 text/html; charset=utf-8
