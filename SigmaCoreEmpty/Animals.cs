@@ -11,8 +11,7 @@ namespace SigmaCoreEmpty
     [Route("api/[controller]")]
     public class Animals : ControllerBase
     {
-       
-        private List<GenarateAnimals> lstAnimalses = GenarateAnimals.lstAnimals(100);
+       private List<GenarateAnimals> lstAnimalses = GenarateAnimals.lstAnimals(100);
         // GET: /<controller>/
         // GET
         //public IActionResult Index()
@@ -49,6 +48,31 @@ namespace SigmaCoreEmpty
             }
 
                 return NotFound();
+
+        }
+
+        /// <summary>
+        /// тут мне стало лень заполнять таблицу жывотных создал метод который сделла это за меня
+        /// стучаться по пути https://localhost:44319/api/animals/apitest/route
+        /// apitest/route - тести пути
+        /// </summary>
+        /// <returns>Возвращаю то что добавил ввиде json</returns>
+        [Route("apitest/route")]
+        public IActionResult Add()
+        {
+            Repository repository = new Repository(new SqlConnection() );
+                
+            if (lstAnimalses.Count>0)
+            {
+                foreach (var animlas in lstAnimalses)
+                {
+                    repository.AddAnimals(animlas.Name,animlas.Weigth,animlas.Height);
+                    
+                }
+                return new JsonResult(lstAnimalses);
+            }
+
+            return NotFound();
 
         }
 

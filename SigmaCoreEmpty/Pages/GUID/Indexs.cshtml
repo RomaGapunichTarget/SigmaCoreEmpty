@@ -1,0 +1,13 @@
+﻿@model List<SigmaCoreEmpty.Models.GenarateAnimals>
+
+<!DOCTYPE html>
+<ul>
+    @{
+
+        foreach (var animalse in Model)
+        {
+            
+            <ol><p>animalse.Name + " " + animalse.Height + " " + animalse.Weigth.ToString()</p></ol>
+        }
+    }
+    </ul>
