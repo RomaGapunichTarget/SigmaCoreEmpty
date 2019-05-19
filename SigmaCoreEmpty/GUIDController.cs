@@ -14,7 +14,7 @@ namespace SigmaCoreEmpty
     [Route("api/test")]
     public class GuidController : Controller
     {
-        Repository repository = new Repository(new SqlConnection());
+        AdoNetRepository repository = new AdoNetRepository(new SqlConnection());
         // GET: /<controller>/
         
         [Route("start")]

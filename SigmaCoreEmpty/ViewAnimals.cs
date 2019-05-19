@@ -4,14 +4,17 @@ using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SigmaCoreEmpty.Models;
+using SigmaCoreEmpty.Models.DB;
 
 namespace SigmaCoreEmpty
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class Animals : ControllerBase
+    public class ViewAnimals : ControllerBase
     {
        private List<GenarateAnimals> lstAnimalses = GenarateAnimals.lstAnimals(100);
+
+        private EFRepository efRepository = new EFRepository();
         // GET: /<controller>/
         // GET
         //public IActionResult Index()
@@ -41,16 +44,24 @@ namespace SigmaCoreEmpty
         [HttpGet("{id?}")]
         public IActionResult Get([FromRoute] int? id)
         {
-            var animal = lstAnimalses.FirstOrDefault(animals => animals.Id == id);
+            //var animal = lstAnimalses.FirstOrDefault(animals => animals.Id == id);
+            //if (animal != null)
+            //{
+            //    return new JsonResult(animal);
+            //}
+
+            //    return NotFound();
+            List<GenarateAnimals> lstAnimalsesEF = efRepository.SelectAnimals();
+            var animal = lstAnimalsesEF.FirstOrDefault(animals => animals.Id == id);
             if (animal != null)
             {
                 return new JsonResult(animal);
             }
 
-                return NotFound();
-
+            return NotFound();
         }
 
+      
         /// <summary>
         /// тут мне стало лень заполнять таблицу жывотных создал метод который сделла это за меня
         /// стучаться по пути https://localhost:44319/api/animals/apitest/route
@@ -60,7 +71,7 @@ namespace SigmaCoreEmpty
         [Route("apitest/route")]
         public IActionResult Add()
         {
-            Repository repository = new Repository(new SqlConnection() );
+            AdoNetRepository repository = new AdoNetRepository(new SqlConnection() );
                 
             if (lstAnimalses.Count>0)
             {

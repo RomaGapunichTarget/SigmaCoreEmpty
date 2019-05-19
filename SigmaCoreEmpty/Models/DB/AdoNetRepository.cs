@@ -8,10 +8,10 @@ using SigmaCoreEmpty.Models;
 
 namespace SigmaCoreEmpty
 {
-    public class Repository
+    public class AdoNetRepository:IRepository
     {
         public SqlConnection conn;
-        public Repository(SqlConnection sql)
+        public AdoNetRepository(SqlConnection sql)
         {
             conn = sql;
 
